@@ -3,7 +3,6 @@ from django.http import HttpResponse, StreamingHttpResponse, HttpResponseServerE
 from django.template import RequestContext, loader, Context
 from .protocol_processing import AP3_2
 from hikvisionapi import Client
-import cv2
 import time
 from django.views.decorators import gzip
 def test_request(request):
@@ -24,7 +23,6 @@ def test_post(request):
         })
 def test_get(request):
     value = request.GET.get('house', '')
-    # if 문을 사용하여 request 발생시키면 될듯하다.
     return render(request, 'test_app/test_get.html', {
         'value' : value,
     })

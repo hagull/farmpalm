@@ -12,9 +12,6 @@
     {% if all_house_cctv %}
     <h3>농가 전체 실외 CCTV</h3>
     {% for cctv in all_house_cctv %}
-
-    <div class = "cctv">농가 전체 실외 CCTV {{forloop.counter}}</div>
-
     <div class="vxgplayer"
     id="vxg_media_player{{ forloop.counter }}"
     width="720"
@@ -33,7 +30,6 @@
     aspect-ratio-mode="1"
     auto-reconnect></div>
   <hr>
-
     {% endfor %}
     {% endif %}
     <h3>각동 {{house_cctv.0.get_cctv_type_display}} CCTV</h3>
