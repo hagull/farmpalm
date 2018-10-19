@@ -4,7 +4,7 @@ import requests
 from data.protocol_processing import *
 from accounts.models import User
 from django.http import HttpResponse
-
+from django.contrib.auth.decorators import login_required
 def base(request):
     return render(request, 'palm/base.html', {})
 def index(request):
@@ -42,7 +42,7 @@ def index(request):
         'snode' : snode,
         'anode' : anode,
     })
-
+@login_required
 def control(request):
     user = request.user
     gcg = user.gcg_set.all()[0]

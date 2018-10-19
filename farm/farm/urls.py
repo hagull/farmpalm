@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.contrib.auth import views as auth_views
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -22,5 +24,7 @@ urlpatterns = [
     path('data/', include("data.urls")),
     path('accounts/', include('accounts.urls')),
     path('test_app/', include('test_app.urls')),
+    path('accounts/login/', auth_views.login, name = 'login', kwargs = {'template_name' : 'login.html'}),
+    path('accounts/logout/', auth_views.logout, name = 'logout', kwargs = {'next_page':settings.LOGIN_URL,})
     # etc
 ]

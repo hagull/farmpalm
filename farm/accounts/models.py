@@ -1,6 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.conf import settings
+from django.dispatch import receiver
+from django.contrib.auth.hashers import make_password, is_password_usable
+from django.db.models.signals import pre_save
 # Create your models here.
 class UserManager(BaseUserManager):
     def create_user(self, username, email=None, password=None, **extra_fields):
@@ -40,20 +43,23 @@ class User(AbstractBaseUser):
     email = models.EmailField(max_length=100, null=False)
     username = models.CharField(max_length=20, unique=True)
     phone = models.CharField(max_length=12)
-
     is_staff = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
     is_active = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
-
     date_joined = models.DateTimeField(auto_now_add=True)
     REQUIRED_FIELDS = ['email']
     USERNAME_FIELD = 'username'
-
     def has_perm(self, perm, obj=None):
         return True
     def has_module_perms(self, app_label):
         return True
+
+@receiver(pre_save, sender=User)
+def password_hashing(instance, **kwargs):
+    if not is_password_usable(instance.password):
+        instance.password = make_password(instance.password)
+# User모델을 저장하기전에 비밀번호를 hashing과정을 거친후 저장함
 
 # 유저의 프로파일 (즉 유저의 개인정보 및 통합제어기 등의 정보가 들어갈예정)
 class Profile(models.Model):
