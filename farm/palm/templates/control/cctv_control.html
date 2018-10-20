@@ -1,51 +1,30 @@
 {% extends "control/layout.html" %}
 
-{% load staticfiles %}
-
 {% block control-content %}
 {% load palm_filters %}
 
 
 <div class="control-content">
-  <h1>CCTV</h1>
-  {% if house_cctv %}
-    {% if all_house_cctv %}
-    <h3>농가 전체 실외 CCTV</h3>
-    {% for cctv in all_house_cctv %}
-    <div class="vxgplayer"
-    id="vxg_media_player{{ forloop.counter }}"
-    width="720"
-    height="480"
-    url="{{ cctv.cctv_ip }}"
-    nmf-src="{% static '/pnacl/Release/media_player.nmf' %}"
-    nmf-path="{% static '/pnacl/Release/media_player.nmf' %}"
-    useragent-prefix="MMP/3.0"
-    latency="10000"
-    autohide="2"
-    volume="0.7"
-    autostart=true
-    avsync
-    mute
-    aspect-ratio
-    aspect-ratio-mode="1"
-    auto-reconnect></div>
-  <hr>
-    {% endfor %}
-    {% endif %}
-    <h3>각동 {{house_cctv.0.get_cctv_type_display}} CCTV</h3>
-    {% for cctv in house_cctv %}
-    <div class = "cctv">{{cctv.gcg}} {{ cctv.get_cctv_type_display }} CCTV {{ forloop.counter }}</div>
-    {% endfor %}
-  {% else %}
-  {% for cctv in gcg_cctv %}
-    <div class = "cctv">{{cctv.gcg}} {{ cctv.get_cctv_type_display }} CCTV {{ forloop.counter }}</div>
-  {% endfor %}
-  <hr>
-  {% endif %}
-
-  {% if all_house_cctv %}
-
-  {% else %}
+  <div class="content-inner">
+    <h2>CCTV</h2>
+      {% if house_cctv %}
+        {% if all_house_cctv %}
+          <h3>농가 전체 실외 CCTV</h3>
+          {% for cctv in all_house_cctv %}
+            <div class = "cctv">농가 전체 실외 CCTV {{forloop.counter}}</div>
+          {% endfor %}
+        {% endif %}
+        <h3>각동 {{house_cctv.0.get_cctv_type_display}} CCTV</h3>
+        {% for cctv in house_cctv %}
+          <div class = "cctv">{{cctv.gcg}} {{ cctv.get_cctv_type_display }} CCTV {{ forloop.counter }}</div>
+        {% endfor %}
+      {% else %}
+        {% for cctv in gcg_cctv %}
+        <div class = "cctv">{{cctv.gcg}} {{ cctv.get_cctv_type_display }} CCTV {{ forloop.counter }}</div>
+        {% endfor %}
+      {% endif %}
+  </div>
+  <div class="content-inner">
     {% filter snode snode_type='t' as temp_snode %}
     {% filter snode snode_type='h' as humd_snode %}
     <h2>Snode Value</h2>
@@ -64,37 +43,42 @@
           <!--
           {{temp_snode.0}}
           {{humd_snode.0}}-->
-          <td>37</td>
-          <td>66%</td>
-          <td>33%</td>
-          <td>28</td>
-          <td>37도</td>
-          <td>66%</td>
-          <td>0.1</td>
+          {% for i in '0123456789123045' %}
+          <tr>
+            <td>37</td>
+            <td>66%</td>
+            <td>33%</td>
+            <td>28</td>
+            <td>37도</td>
+            <td>66%</td>
+            <td>0.1</td>
+          </tr>
+          {% endfor %}
         </tbody>
 
       </table>
     </div>
-
-{% if house_cctv %}
-  {% else %}
+  </div>
+  <div class="content-inner">
+    {% if house_cctv %}
+    {% else %}
     <h2>Anode Control</h2>
-      {% filter anode anode_type='oc' as oc_anode %}
-      {% filter anode anode_type='wm' as wm_anode %}
+    {% filter anode anode_type='oc' as oc_anode %}
+    {% filter anode anode_type='wm' as wm_anode %}
 
     <h3>Open and Close Anode</h3>
     {% for oc in oc_anode %}
-      <div class = "btn btn-primary">{{oc}}</div>
-      <a href="{% url "data:anode_request" gcg.id oc.id %}" class = "btn btn-primary">Anode Control</a>
+    <div class = "btn btn-primary">{{oc.id}}</div>
+    <a href="{% url "data:anode_request" gcg.id oc.id %}" class = "btn btn-primary">Anode Control</a>
     {% endfor %}
 
     <h3>Wartering Motor</h3>
     {% for wm in wm_anode %}
-      <div class = "btn btn-primary">{{wm}}</div>
-      <a href="{% url "data:anode_request" gcg.id wm.id %}" class = "btn btn-primary">Anode Control</a>
+    <div class = "btn btn-primary">{{wm.id}}</div>
+    <a href="{% url "data:anode_request" gcg.id wm.id %}" class = "btn btn-primary">Anode Control</a>
     {% endfor %}
-  {% endif %}
-  {% endif %}
+    {% endif %}
+  </div>
 </div>
 
 {% endblock %}

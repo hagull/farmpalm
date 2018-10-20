@@ -1,3 +1,5 @@
+@media (max-width: 960px){}
+@media (max-width: 768px){}
 body {
   width: 100%;
   height: 100%;
@@ -5,27 +7,14 @@ body {
   margin: 0;
   overflow-x:hidden;
   overflow-y:scroll;
-
-  background-color: #f8f8f8;
-
 }
 
 .wrapper {
   width: 100%;
-
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: 70px minmax(700px, auto) 50px;  /* header (menu, content) footer 3가지 영역 크기 */
-
 }
-
-
-  box-sizing: border-box;
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-}
-
-
 
 .header{
   grid-column: span 12;
@@ -33,48 +22,24 @@ body {
 .footer{
   grid-column: span 12;
 }
-<<<<<<< HEAD
 .menu {
   grid-column: span 1;
 }
 .content {
   grid-column: span 11;
   grid-template-rows: minmax(700px, auto);
-
-
-@media (min-width: 750px)   /* 모바일 외에 */
-{
-  .wrapper {
-    grid-template-rows: 70px minmax(800px, auto) 50px;  /* header (menu, content) footer 3가지 영역 크기 */
-  }
-  .menu {
-    grid-column: span 1;
-  }
-  .content {
-    grid-column: span 11;
-    grid-template-rows: minmax(700px, auto);
-  }
-
 }
 
-@media (max-width: 749px)   /* 모바일 화면 */
+@media (max-width: 768px)   /* 모바일 화면 */
 {
   .wrapper {
-
     grid-template-rows: 70px auto minmax(1000px, auto) 50px;  /* header menu, content, footer 4가지 영역 */
   }
   .menu {
-
-    grid-template-rows: 70px auto minmax(800px, auto) 50px;  /* header menu, content, footer 4가지 영역 */
-  }
-  .menu {
-    width: 375px;
-
     grid-column: span 12;
   }
   .content {
     grid-column: span 12;
-
     grid-template-rows: minmax(600px, auto);
   }
 }
@@ -86,8 +51,11 @@ body {
   border-top: 1px solid #e7e7e7;
   border-bottom: 1px solid #e7e7e7;
 }
-@media (max-width: 749px)     /*모바일 화면 */
+@media (max-width: 768px)     /*모바일 화면 */
 {
+  .header a{
+    text-align: center;
+  }
   .content {
     border: none;
     border-bottom: 1px solid #e7e7e7;
@@ -97,30 +65,6 @@ body {
 /* header css */
 .header a {
   display: block;
-
-    grid-template-rows: minmax(700px, auto);
-  }
-}
-
-
-
-
-.header, .content{
-  border: 1px solid #e7e7e7;
-}
-.menu {
-  border-right: 1px solid #e7e7e7;
-}
-.footer{
-  border-top: 1px solid #e7e7e7;
-}
-/* header css */
-
-
-.header a {
-  display: block;
-  box-sizing: border-box;
-
   padding: 15px 15px;
   font-size: 25px;
   color: #928e8e;
@@ -128,7 +72,6 @@ body {
 .header a:visited, a:link, a:active{
   color: #928e8e;
 }
-
 
 /*------------- menu Css -------------*/
 .menu {
@@ -145,43 +88,23 @@ body {
 }
 .menu-divider {
   border-bottom: 1px solid #e7e7e7;
-
-
-/*------------- menu Css -------------*/
-.menu {
-  display:block;
-  width: 100%;
-}
-.menu a {
-  box-sizing: border-box;
-  color: #337ab7;
-
 }
 .menu a:hover, a:visited, a:link, a:active{
   color: #337ab7;
 }
-@media (max-width: 749px)     /*모바일 화면 */
+@media (max-width: 768px)     /*모바일 화면 */
 {
   .menu a {
     display: inline-block;
     float: left;
-
     font-size: 14px;
     text-align: center;
     width: 20%;
-    padding: 4px 0;
-
-    width: 20%;
-    padding: 4px 0;
-    margin: 0;
-    font-size: 14px;
-    text-align: center;
-
+    padding: 12px 0;
   }
   .menu i {
     display: none;
   }
-
   .menu-divider {
     margin: 0;
     border-bottom:none;
@@ -189,70 +112,36 @@ body {
   }
 }
 
-  .menu .menu-divider {
-    border-right: 1px solid #e7e7e7;
-    magin: 0;
-  }
-}
-@media (min-width: 750px)   /* 모바일 외에 */
-{
-  .menu a {
-    display: block;
-    width: 200px;
-    padding: 15px;
-    font-size: 18px;
-    border-bottom: 1px solid #e7e7e7;
-  }
-}
-
-
-
-
 
 /* --------------위까지 기본 Layout ----------------*/
 
-
 /*------------- CONTROL NavBar -------------*/
 .content {
-  padding-left: 20px;
+  width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  background-color: #f2f4f7;
 }
 .control-nav {
-  width: 100%;
+  padding-left: 30px;
   height: auto;
-  padding: 10px 0;
+  background: white;
   border-bottom: 1px solid #e7e7e7;
 }
-.control-inner{
-  display: table;
-  border-collapse: separate;
-  border-spacing: 10px;
+.control-inner {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
 }
 .control-inner a {
-  display: table-cell;
+  width: 120px;
+  padding: 18px 0;
+  margin: 10px 20px;
+  font-size: 24px;
+  color: white;
   text-align:center;
-  vertical-align: middle;
-  padding: 0;
-  width: 100px;
-  height: 50px;
 }
 .control-inner a:hover, a:visited, a:link, a:active{
-  text-decoration: none;
-}
-.control-inner span {
-  font-size: 20px;
-  color: white;
-}
-
-/*------------- CONTROL Css -------------*/
-.content {
-/*  height: auto;
-  overflow-y: auto;*/
-}
-.control-inner span {
-  color: white;
-}
-.control-inner a:active, a:hover, a:visited, a:linke{
-  color: white;
   text-decoration: none;
 }
 
@@ -260,195 +149,120 @@ body {
   background-color: #337ab7;
   border: 1px solid #2e6da4;
   border-radius: 5px;
-
   font-weight: 400;
 }
-
-@media (max-width: 749px)     /*모바일 화면 */
+@media (max-width: 960px)
 {
+  .control-nav {
+    padding: 0 10px;
+  }
+  .control-inner {
+    width: 560px;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+  }
+  .control-inner a {
+    margin: 10px;
+  }
+}
+@media (max-width: 768px)     /*모바일 화면 */
+{
+  .content {
+    padding: 0;
+  }
+  .control-nav{
+    display: none;
+    position : fixed;
+    padding: 0px;
+    margin: 0;
+    width: 100%;
+    height: auto;
+    background-color: rgba(136,125,126,0.9);
+    z-index: 1002;
+  }
+  .control-inner {
+    width: 70%;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+  }
+  .control-inner a {
+    padding: 15px 0;
+    width: 90px;
+    font-size: 20px;
+  }
   .mobile-nav{
     display:block;
     position: fixed;
-    top: 80%;
-    left: 15px;
-    background-color: #ccc;
-    width: 50px;
-    height:50px;
-  }
-  .control-inner {
-    position: absolute;
+    background-color: #337ab7;
+    top: 125px;
+    left: 5px;
+    width: 30px;
+    height: 30px;
+    z-index: 1003;
   }
 }
 
-/*--------Control Page Content-------------*/
-.control-content {
-  position: relative;
+/*------------- Control NavBar -------------*/
+
+
+
+/*------------- Control Content -------------*/
+.control-content{
+  padding: 10px 0;
+  width: 100%;
+  height: 100%;
   z-index: 1001;
-  left: 20px;
-
-  text-align:center;
-  font-weight: 400;
 }
-
-.control-content {
-  position: relative;
+.content-inner {
+  margin-top: 10px;
+  padding: 5px 50px;
+  height: auto;
+  background-color: white;
+  border: 1px solid rgb(235, 238, 243);
 }
-.control-content .cctv{
+.content-cctv h2, h3 {
+  margin: 10px 0px;
+}
+.cctv {
+  display: inline-block;
   box-sizing: border-box;
+  width: 46%;
+  height: 300px;
+  margin: 0 20px 20px 0;
   border: 1px solid black;
 }
-
 .sensor-table{
   border: 1px solid #777;
 }
 .sensor-table th, td {
-  width: auto;
-  height: 40px;
+  width: 5%;
+  padding: 5px 0;
+  font-size: 18px;
   text-align: center;
   border: 1px solid black;
-  padding: 10px;
-
 }
-@media (max-width: 749px)     /*모바일 화면 */
+@media (max-width: 960px)
 {
-  .control-content {
-    left: 15%;
+  .content-inner {
+      padding: 5px 30px;
   }
-
-  .control-nav {
-    width: 15%;
-    margin: 0px;
-    display: inline-block;
-    position:fixed;
+  .cctv {                     /*cctv가 한줄로 디는 순간 */
+    width: 100%;
   }
-  .control-inner button, a {
-    display: block;
-    width: 40px;
-    height: 25px;
-    margin: 5px;
+}
+@media (max-width: 768px)     /*모바일 화면 */
+{
+  .control-content{
     padding: 0;
   }
-
-  .control-content .cctv{
-    width: 80%;
-    height: 100px;
-    margin-bottom : 5px;
+  .content-inner {
+    padding: 5px 15px 5px 40px;
   }
-  .sensor-table th, td {
-    font-size: 10px;
-  }
-
-  .control-content {
-    position: relative;
-  }
-  .control-content .cctv{
-    box-sizing: border-box;
-    border: 1px solid black;
-  }
-
-  .sensor-table{
-    border: 1px solid #777;
-  }
-  .sensor-table th, td {
-    width: auto;
-    height: 40px;
-    text-align: center;
-    border: 1px solid black;
-    padding: 10px;
-}
-@media (min-width: 750px)  /* 모바일 외에 */
-{
-
-}
-@media (min-width: 750px)  /* 모바일 외에 */
-{
-  .control-content {
-    left: 20px;
-  }
-  .control-nav {
-    padding:20px;
+  .cctv {
     width: 100%;
-    height: auto;
-    border-bottom: 1px solid #e7e7e7;
-  }
-  .control-inner button, a {
-    display: inline-block;
-    width: 100px;
-    height: 50px;
-    padding: 10px 0px;
-    margin: 0, 5px, 0, 5px;
-  }
-  .control-inner span {
-    font-size: 20px;
-  }
-
-  .control-content .cctv{
-    width: 45%;
-    height: 200px;
-    display : inline-block;
-    margin : 10px;
-  }
-  .sensor-table th, td {
-    font-size: 18px;
+    height: 100px;
+    margin-bottom: 10px;
   }
 }
-
-
-/*-------Palm PAGE------------*/
-.body-palm-left{
-  display: grid;
-  grid-column-start: span 3;
-  grid-column-end: 7
-}
-.body-palm-right{
-  display: grid;
-  grid-column-start: 7;
-  grid-column-end: span 3;
-}
-.palm-nav-btn {
-  display:inherit;
-  justify-content: center;
-  align-content: center;
-  grid-template-columns: repeat(3);   /*기존 grid 속에 3*3 grid를 그리고 center에 위치 */
-  grid-template-rows: repeat(3);
-  border: 1px solid black;
-  margin: 5px;
-}
-/*-------Palm PAGE------------*/
-
-
-
-
-/*------Control Log-----------*/
-.control-log {
-  width: 100%;
-  height: 100%;
-  box-sizing: border-box;
-  padding: 20px;
-  margin: 0;
-}
-.control-log-header {
-  margin-bottom: 10px;
-  width:100%;
-  float: left;
-}
-.control-log-header .btn-retrieve {
-  background-color: #337ab7;
-  border: 1px solid #2e6da4;
-  border-radius: 5px;
-  color: white;
-  text-align:center;
-  font-size: 18px;
-  float:right;
-}
-.control-log-body {
-  clear: both;
-}
-/*------Control Log-----------*/
-
-
-
-/*--------------GCG PAGE---------*/
-
-/*--------------GCG PAGE---------*/
-
