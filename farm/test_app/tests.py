@@ -3,8 +3,8 @@ from protocol_processing import *
 import requests
 
 
-import cv2
-import numpy as np
+#import cv2
+#import numpy as np
 
 
 '''def anode_request(request, gcg_id, anode_id):
@@ -206,25 +206,26 @@ main3()
 # 현재 gcg 1에 연결되어 있는 node의 serial num
 
 
-cap = cv2.VideoCapture("rtsp://admin:Farmpalm!@211.205.5.125:554/Streaming/Channels/101")
+#cap = cv2.VideoCapture("rtsp://admin:Farmpalm!@211.205.5.125:554/Streaming/Channels/101")
 # cap = cv2.VideoCapture("rstp://admin:Falmpalm!@211.205.5.125:554/doc/page/previw.asp")
 # cap.open("rtsp://admin:Farmpalm!@211.205.5.125:554/Streaming/Channels/1")
-i = 0
-while(True):
-    ret, frame = cap.read()
+#i = 0
+#while(True):
+#    ret, frame = cap.read()
+
 
     # Our operations on the frame come here
-    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+#    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
     # Display the resulting frame
-    cv2.imshow('frame', ret)
+ #   cv2.imshow('frame', ret)
 
-    if cv2.waitKey(1) & 0xFF == ord('q'):
-        break
-    i += 1
-    print(i)
-cap.release()
-cv2.destroyAllWindows()
+  #  if cv2.waitKey(1) & 0xFF == ord('q'):
+   #     break
+    #i += 1
+    #print(i)
+#cap.release()
+#cv2.destroyAllWindows()
 
 
 

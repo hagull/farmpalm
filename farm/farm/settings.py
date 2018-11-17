@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_extensions',
+    'rest_framework',
     'accounts',
     'test_app',
     'palm',
@@ -133,3 +134,7 @@ STATICFILES_DIRS = (
 )
 INTERNAL_IPS = ["127.0.0.1"]
 LOGIN_REDIRECT_URL = '/palm/control'
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 20,
+}

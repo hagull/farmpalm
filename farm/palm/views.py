@@ -310,5 +310,6 @@ def gcg_detail_2(request, gcg_serial):
     else:
         pass
     split_protocol['url'] = url
+    # 여기서 split_protocol의 인자들을 DB에 저장시키면 됨
     return render(request, 'settings/gcg_detail_2.html', split_protocol)
 
