@@ -108,10 +108,19 @@ class AutoSlugField(UniqueFieldMixin, SlugField):
         else:
             self._populate_from = populate_from
 
+        if not callable(populate_from):
+            if not isinstance(populate_from, (list, tuple)):
+                populate_from = (populate_from, )
+
+            if not all(isinstance(e, six.string_types) for e in populate_from):
+                raise TypeError("'populate_from' must be str or list[str] or tuple[str], found `%s`" % populate_from)
+
         self.slugify_function = kwargs.pop('slugify_function', slugify)
         self.separator = kwargs.pop('separator', six.u('-'))
         self.overwrite = kwargs.pop('overwrite', False)
         self.check_is_bool('overwrite')
+        self.overwrite_on_add = kwargs.pop('overwrite_on_add', True)
+        self.check_is_bool('overwrite_on_add')
         self.allow_duplicates = kwargs.pop('allow_duplicates', False)
         self.check_is_bool('allow_duplicates')
         self.max_unique_query_attempts = kwargs.pop('max_unique_query_attempts', MAX_UNIQUE_QUERY_ATTEMPTS)
@@ -149,9 +158,16 @@ class AutoSlugField(UniqueFieldMixin, SlugField):
 
     def create_slug(self, model_instance, add):
         slug = getattr(model_instance, self.attname)
-        if slug and not self.overwrite and not add:
+        use_existing_slug = False
+        if slug and not self.overwrite:
             # Existing slug and not configured to overwrite - Short-circuit
             # here to prevent slug generation when not required.
+            use_existing_slug = True
+
+        if self.overwrite_on_add and add:
+            use_existing_slug = False
+
+        if use_existing_slug:
             return slug
 
         # get fields to populate from and slug field to set

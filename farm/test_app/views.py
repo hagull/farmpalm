@@ -2,7 +2,6 @@ from django.shortcuts import render
 from django.http import HttpResponse, StreamingHttpResponse, HttpResponseServerError
 from django.template import RequestContext, loader, Context
 from .protocol_processing import AP3_2
-from hikvisionapi import Client
 import time
 from django.views.decorators import gzip
 from rest_framework import status
