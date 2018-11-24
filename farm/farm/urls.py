@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
 from django.conf import settings
+from django.conf.urls import include
+from rest_framework.authtoken.views import obtain_auth_token
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,6 +27,9 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('test_app/', include('test_app.urls')),
     path('accounts/login/', auth_views.login, name = 'login', kwargs = {'template_name' : 'login.html'}),
-    path('accounts/logout/', auth_views.logout, name = 'logout', kwargs = {'next_page':settings.LOGIN_URL,})
+    path('accounts/logout/', auth_views.logout, name = 'logout', kwargs = {'next_page':settings.LOGIN_URL,}),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('test_api/', include('test_api.urls', namespace='test_api')),
+    path('api-token-auth/', obtain_auth_token),
     # etc
 ]

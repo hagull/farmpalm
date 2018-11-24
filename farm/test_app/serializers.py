@@ -37,6 +37,7 @@ class AnodeSerializer(ModelSerializer):
         serializer.save()"""
 # 이때 이 perform_create는 재정의 하여서 ip주소를 자동으로 받는것이 가능 - 이는 유용할듯
 """def perform_create(self, serializer):
-    # ip 필드가 있다면 ?
-    serializer.save(ip=self.request.META['REMOTE_ADDR'])"""
+    # ip 필드가 있다면 ? 여기서 이 perform_create 재정의를 통해서 이미 인증된 유저에 대해서도 다룰수있다.
+    serializer.save(author=self.request.user,
+                    ip=self.request.META['REMOTE_ADDR'])"""
 # 이런식으로 재정의 하여서 유저의 ip주소를 받는다 즉 creat시에 추가로 필드를 설정할때 씀 여기서는 ip주소를 추가로 받음

@@ -19,4 +19,5 @@ urlpatterns = [
     path('test_index2', views.index2, name = 'index2'),
     # rest api 사용
     path('', include(router.urls)),
+
 ]

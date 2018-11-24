@@ -39,10 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_extensions',
     'rest_framework',
+    'rest_framework.authtoken',
     'accounts',
     'test_app',
     'palm',
     'data',
+    'test_api',
 ]
 
 AUTH_USER_MODEL = 'accounts.User'
@@ -135,6 +137,16 @@ STATICFILES_DIRS = (
 INTERNAL_IPS = ["127.0.0.1"]
 LOGIN_REDIRECT_URL = '/palm/control'
 REST_FRAMEWORK = {
+
+    'DEFAULT_AUTHENICATION_CLASSES' : [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES' : [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+    # 모든페이지에 대해 인증이 있어야 조회할수가 있다고 말함
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 20,
 }
