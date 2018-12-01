@@ -19,6 +19,7 @@
       <option name="ignoredIdentifiers">
         <list>
           <option value="farm.test_api.views.modelViewSet" />
+          <option value="farm.accounts.urls.kakaoKogin" />
         </list>
       </option>
     </inspection_tool>
